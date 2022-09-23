@@ -56,10 +56,10 @@ function formatAge(start, end, sigFigs) {
         }
     }
 
-    return result
+    return result.slice(0, -2)
 };
 
 function setAge() {
-    age.innerText = formatAge(birthday, new Date(), 2)
+    age.innerText = formatAge(birthday, new Date(), 2) 
 }
 setAge()
