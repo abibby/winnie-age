@@ -3,53 +3,6 @@
 const birthday = new Date('2022-05-07')
 const age = document.getElementById('age')
 
-const millisecond = 1
-const second = millisecond * 1000
-const minute = second * 60
-const hour = minute * 60
-const day = hour * 24
-const week = day * 7
-const month = day * 30
-const year = day * 365
-
-function formatDuration(ms, sigFigs) {
-    if (ms < 0) ms = -ms;
-
-    const time = [
-        ['year', year],
-        // ['month', month],
-        ['week', week],
-        ['day', day],
-        ['hour', hour],
-        ['minute', minute],
-        ['second', second],
-        ['millisecond', millisecond]
-    ];
-    
-    let current = ms
-    let result = ''
-
-    let lastDuration = Number.MAX_SAFE_INTEGER
-    
-    let count = 0
-
-    for (const [name, duration] of time) {
-        count++
-        const floor = Math.floor((current / duration) % lastDuration)
-        if (duration <= current) {
-            const s = floor !== 1 ? 's' : ''
-            result += `${floor} ${name}${s}, `
-        }
-        current = current - (floor * duration)
-
-        if (count > sigFigs) {
-            break
-        }
-    }
-
-    return result.slice(0, -2)
-};
-
 /**
  * 
  * @param {Date} date 
@@ -107,7 +60,6 @@ function formatAge(start, end, sigFigs) {
 };
 
 function setAge() {
-    // age.innerText = formatDuration(Date.now() - birthday.getTime(), 2)
     age.innerText = formatAge(birthday, new Date(), 2)
 }
 setAge()
